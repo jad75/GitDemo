@@ -1,0 +1,29 @@
+﻿<Window x:Class="EFModelFirst.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EFModelFirst"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Top">
+            <Button Click="Laden" >Laden</Button>
+            <Button Click="Speichern">Speichern</Button>
+            <Button Click="Delete">Löschen</Button>
+            <Button Click="Attach">Attach</Button>
+            <Button Click="DemoDaten">Demodaten erzeugen</Button>
+        </WrapPanel>
+        <DataGrid x:Name="grid" MouseDoubleClick="Grid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Abteilungen">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox ItemsSource="{Binding Abteilung}" DisplayMemberPath="Bezeichnung"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
