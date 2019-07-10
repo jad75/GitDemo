@@ -8,7 +8,9 @@
         Title="MainWindow" Height="450" Width="600">
     <DockPanel>
         <WrapPanel DockPanel.Dock="Top">
-            <Button>Laden</Button>
+            <Button Click="Laden">Laden</Button>
+            <Button Click="Save">Speichern</Button>
+            <Button Click="Demo">Demo</Button>
         </WrapPanel>
         <DataGrid x:Name="grid"/>
     </DockPanel>

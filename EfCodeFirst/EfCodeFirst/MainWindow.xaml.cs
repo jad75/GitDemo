@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bogus;
+using EfCodeFirst.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,34 @@ namespace EfCodeFirst
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        EfContext context = new EfContext();
+
+        private void Laden(object sender, RoutedEventArgs e)
+        {
+            context = new EfContext();
+            grid.ItemsSource = context.Mitarbeiter.ToList();
+        }
+
+        private void Demo(object sender, RoutedEventArgs e)
+        {
+            var faker = new Faker<Mitarbeiter>()
+                .RuleFor(x => x.Name, (f, u) => f.Name.FullName(Bogus.DataSets.Name.Gender.Male))
+                .RuleFor(x => x.GebDatum, (f, u) => f.Date.Past(40))
+                .RuleFor(x => x.Beruf, (f, u) => f.Name.JobTitle());
+
+            for (int i = 0; i < 100; i++)
+            {
+                var m = faker.Generate();
+                context.Mitarbeiter.Add(m);
+            }
+            context.SaveChanges();
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            context?.SaveChanges();
         }
     }
 }
