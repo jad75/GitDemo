@@ -25,12 +25,15 @@ namespace ppedv.VollE.Data.EF
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
+            modelBuilder.Properties<DateTime>().Configure(x => x.HasColumnType("datetime2"));
+
             //Table per Type Mapping
             modelBuilder.Entity<Person>().ToTable(nameof(Person));
             modelBuilder.Entity<Spieler>().ToTable(nameof(Model.Spieler));
             modelBuilder.Entity<Trainer>().ToTable(nameof(Model.Trainer));
 
             modelBuilder.Entity<Mannschaft>().HasMany(x => x.Spieler).WithMany(x => x.Mannschaft);
+
 
             modelBuilder.Entity<Mannschaft>()
                 .HasMany(x => x.SpielAlsGast)
@@ -43,5 +46,7 @@ namespace ppedv.VollE.Data.EF
                 .WillCascadeOnDelete(false);
 
         }
+
+
     }
 }
