@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using AutoFixture;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ppedv.VollE.Model;
 
@@ -17,7 +20,8 @@ namespace ppedv.VollE.Data.EF.Tests
 
                 con.Database.Create();
 
-                Assert.IsTrue(con.Database.Exists());
+                //Assert.IsTrue(con.Database.Exists());
+                con.Database.Exists().Should().BeTrue();
             }
         }
 
@@ -62,6 +66,37 @@ namespace ppedv.VollE.Data.EF.Tests
                 //check DELETE
                 var loaded = con.Trainer.Find(t.Id);
                 Assert.IsNull(loaded);
+            }
+        }
+
+
+        [TestMethod]
+        public void EfContext_CRUD_Mannschaft_AutoFix()
+        {
+            var fix = new Fixture();
+
+            fix.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            var mann = fix.Create<Mannschaft>();
+            //Spiele dürfen nicht NULL sein, darum alle Mannanschaft auf sich selbst
+            foreach (var item in mann.SpielAlsHeim.Union(mann.SpielAlsGast))
+            {
+                item.GastMannschaft = mann;
+                item.HeimMannschaft = mann;
+            }
+
+            //INSERT
+            using (var con = new EfContext())
+            {
+                con.Mannschaft.Add(mann);
+                con.SaveChanges();
+            }
+
+            using (var con = new EfContext())
+            {
+                var loaded = con.Mannschaft.Find(mann.Id);
+
+                loaded.Should().BeEquivalentTo(mann, o => o.IgnoringCyclicReferences());
             }
         }
     }

@@ -6,8 +6,8 @@ namespace ppedv.VollE.Model
     {
         public DateTime Datum { get; set; }
         public string Ort { get; set; }
-        public Mannschaft HeimMannschaft { get; set; }
-        public Mannschaft GastMannschaft { get; set; }
+        public virtual Mannschaft HeimMannschaft { get; set; }
+        public virtual Mannschaft GastMannschaft { get; set; }
         public int PunkteHeim { get; set; }
         public int PunkteGast { get; set; }
     }

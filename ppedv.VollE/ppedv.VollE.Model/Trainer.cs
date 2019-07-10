@@ -5,7 +5,7 @@ namespace ppedv.VollE.Model
     public class Trainer : Person
     {
         public Trainerlizenzstufe Trainerlizenzstufe { get; set; }
-        public ICollection<Mannschaft> Mannschaft { get; set; } = new HashSet<Mannschaft>();
+        public virtual ICollection<Mannschaft> Mannschaft { get; set; } = new HashSet<Mannschaft>();
     }
 
     public enum Trainerlizenzstufe

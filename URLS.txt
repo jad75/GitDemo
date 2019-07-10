@@ -1,4 +1,4 @@
-
+VollE
 
 https://github.com/bchavez/Bogus
 https://www.connectionstrings.com
@@ -10,3 +10,7 @@ https://github.com/OleksiiKovalov/expressprofiler
 https://codeplexarchive.blob.core.windows.net/archive/projects/ExpressProfiler/ExpressProfiler.zip
 
 https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/
+
+
+https://fluentassertions.com/objectgraphs/
+https://github.com/AutoFixture/AutoFixture
