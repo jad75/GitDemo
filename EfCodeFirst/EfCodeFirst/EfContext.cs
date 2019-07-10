@@ -15,7 +15,8 @@ namespace EfCodeFirst
         //public EfContext() : base("Server=.;Database=EfCodeFirst;Trusted_Connection=true;")
         public EfContext() : base("name=myConString")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EfContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EfContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EfContext, Migrations.Configuration>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -23,10 +24,11 @@ namespace EfCodeFirst
             //System.Data.Entity.ModelConfiguration.Conventions.
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Mitarbeiter>().ToTable("Employees");
+            modelBuilder.Entity<Mitarbeiter>().ToTable("Mitarbeiter");
+
+            modelBuilder.Entity<Mitarbeiter>().Ignore(x => x.Gehalt);
 
             modelBuilder.Entity<Mitarbeiter>().Property(x => x.Name)
-                                              .HasColumnName("🧦")
                                               .HasMaxLength(67)
                                               .IsRequired();
 
@@ -41,7 +43,7 @@ namespace EfCodeFirst
         public DepartmentConfig()
         {
             ToTable("Departments");
-            Property(x => x.Bezeichnung).HasColumnName("Desc 🖼");
+            Property(x => x.Bezeichnung).HasColumnName("Desc");
         }
     }
 

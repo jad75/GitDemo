@@ -1,0 +1,3 @@
+﻿1. Tools -> Package Manager -> Console 
+2. Enable-Migrations
+3. Add-Migration

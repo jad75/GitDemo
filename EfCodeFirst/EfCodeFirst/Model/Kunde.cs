@@ -2,7 +2,6 @@
 
 namespace EfCodeFirst.Model
 {
-    [Table("🧨🧨")]
     public class Kunde : Person
     {
         public string KdNummer { get; set; }

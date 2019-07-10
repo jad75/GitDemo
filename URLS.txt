@@ -5,3 +5,8 @@ https://www.connectionstrings.com
 https://fishcodelib.com/index.htm
 
 msdn.com/data/ef
+
+https://github.com/OleksiiKovalov/expressprofiler
+https://codeplexarchive.blob.core.windows.net/archive/projects/ExpressProfiler/ExpressProfiler.zip
+
+https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/

@@ -6,6 +6,7 @@ namespace EfCodeFirst.Model
     {
         public int Id { get; set; }
         public string Bezeichnung { get; set; }
+        //public int MyProperty { get; set; }
         public ICollection<Mitarbeiter> Mitarbeiter { get; set; } = new HashSet<Mitarbeiter>();
 
     }

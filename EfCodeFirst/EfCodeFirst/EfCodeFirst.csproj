@@ -80,6 +80,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201907100920214_InitialCreate.cs" />
+    <Compile Include="Migrations\201907100920214_InitialCreate.Designer.cs">
+      <DependentUpon>201907100920214_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907100925283_v2.cs" />
+    <Compile Include="Migrations\201907100925283_v2.Designer.cs">
+      <DependentUpon>201907100925283_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907100929366_v3.cs" />
+    <Compile Include="Migrations\201907100929366_v3.Designer.cs">
+      <DependentUpon>201907100929366_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Abteilung.cs" />
     <Compile Include="Model\Kunde.cs" />
     <Compile Include="Model\Mitarbeiter.cs" />
@@ -97,6 +110,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201907100920214_InitialCreate.resx">
+      <DependentUpon>201907100920214_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907100925283_v2.resx">
+      <DependentUpon>201907100925283_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907100929366_v3.resx">
+      <DependentUpon>201907100929366_v3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -109,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ef_Migration.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
