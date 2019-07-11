@@ -15,7 +15,7 @@
             <Button Command="{Binding SaveCommand}">Speichern</Button>
             <Button Command="{Binding NewCommand}">Neu</Button>
             <Button Command="{Binding DeleteCommand}">Löschen</Button>
-            <Button>Demo daten</Button>
+            <Button Command="{Binding LadenCommand}">Laden</Button>
         </WrapPanel>
         <DataGrid ItemsSource="{Binding SpielerList}"
                   SelectedItem="{Binding SelectedSpieler}"

@@ -1,7 +1,9 @@
 ﻿using ppedv.VollE.Model;
 using ppedv.VollE.Model.Contracts;
+using ppedv.VollE.Model.Faults;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +49,34 @@ namespace ppedv.VollE.Data.EF
 
         public int SaveChanges()
         {
-            return context.SaveChanges();
+            try
+            {
+                return context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                var myEx = new ConcurrencyException("Schade: " + ex.Message);
+                myEx.UserWins = () =>
+                {
+                    foreach (var item in ex.Entries)
+                    {
+                        item.OriginalValues.SetValues(item.GetDatabaseValues());
+                    }
+                    SaveChanges();
+                };
+
+                myEx.DbWins = () =>
+                {
+                    foreach (var item in ex.Entries)
+                    {
+                        item.CurrentValues.SetValues(item.GetDatabaseValues());
+                    }
+                };
+
+                throw myEx;
+            }
+
+
         }
 
 
@@ -59,4 +88,6 @@ namespace ppedv.VollE.Data.EF
                 context.Entry(loaded).CurrentValues.SetValues(entity);
         }
     }
+
+
 }

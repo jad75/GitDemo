@@ -27,13 +27,15 @@ namespace ppedv.VollE.Data.EF
 
             modelBuilder.Properties<DateTime>().Configure(x => x.HasColumnType("datetime2"));
 
+            modelBuilder.Types<Entity>().Configure(c => c.Property(x => x.Modified).IsConcurrencyToken());
+            
+
             //Table per Type Mapping
             modelBuilder.Entity<Person>().ToTable(nameof(Person));
             modelBuilder.Entity<Spieler>().ToTable(nameof(Model.Spieler));
             modelBuilder.Entity<Trainer>().ToTable(nameof(Model.Trainer));
 
             modelBuilder.Entity<Mannschaft>().HasMany(x => x.Spieler).WithMany(x => x.Mannschaft);
-
 
             modelBuilder.Entity<Mannschaft>()
                 .HasMany(x => x.SpielAlsGast)
@@ -47,6 +49,23 @@ namespace ppedv.VollE.Data.EF
 
         }
 
+
+        public override int SaveChanges()
+        {
+            var now = DateTime.Now;
+            foreach (var item in ChangeTracker.Entries().Where(x=>x.State == EntityState.Added))
+            {
+                ((Entity)item.Entity).Created = now;
+                ((Entity)item.Entity).Modified = now;
+            }
+
+            foreach (var item in ChangeTracker.Entries().Where(x => x.State == EntityState.Modified))
+            {
+                ((Entity)item.Entity).Modified = now;
+            }
+
+            return base.SaveChanges();
+        }
 
     }
 }
