@@ -13,6 +13,8 @@ namespace ppedv.VollE.UI.WPF.ViewModels
     {
         public ObservableCollection<Spieler> SpielerList { get; set; }
 
+        public Spieler SelectedSpieler { get; set; }
+
         Core core = new Core();
         public SpielerViewModel()
         {

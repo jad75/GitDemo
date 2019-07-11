@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ppedv.VollE.UI.WPF.Views"
+             xmlns:vm="clr-namespace:ppedv.VollE.UI.WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:SpielerViewModel/>
+    </UserControl.DataContext>
     <DockPanel>
         <WrapPanel DockPanel.Dock="Top" Margin="8">
             <Button>Speichern</Button>
@@ -13,18 +17,20 @@
             <Button>Löschen</Button>
             <Button>Demo daten</Button>
         </WrapPanel>
-        <DataGrid Width="200" DockPanel.Dock="Left"/>
+        <DataGrid ItemsSource="{Binding SpielerList}"
+                  SelectedItem="{Binding SelectedSpieler}"
+                  Width="200" DockPanel.Dock="Left"/>
         <StackPanel Margin="8,0">
             <Label>Name</Label>
-            <TextBox/>
+            <TextBox Text="{Binding SelectedSpieler.Name}" />
             <Label>GebDatum</Label>
-            <DatePicker/>
+            <DatePicker SelectedDate="{Binding SelectedSpieler.GebDatum}"/>
             <Label>Geschlecht</Label>
-            <ComboBox/>
+            <ComboBox />
             <Label>Händigkeit</Label>
-            <CheckBox>Rechts</CheckBox>
+            <CheckBox IsChecked="{Binding SelectedSpieler.Händigkeit}">Rechts</CheckBox>
             <Label>Mannschaftmitglied</Label>
-            <ListBox Height="60"/>
+            <ListBox Height="60" ItemsSource="{Binding SelectedSpieler.Mannschaft}" DisplayMemberPath="Name"/>
         </StackPanel>
     </DockPanel>
 </UserControl>
