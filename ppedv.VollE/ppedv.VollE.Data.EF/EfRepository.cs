@@ -50,6 +50,8 @@ namespace ppedv.VollE.Data.EF
             return context.SaveChanges();
         }
 
+
+        //nur für Web/WCF/WebAPI
         public void Update<T>(T entity) where T : Entity
         {
             var loaded = GetById<T>(entity.Id);

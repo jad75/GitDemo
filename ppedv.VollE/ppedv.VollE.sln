@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.VollE.Data.EF.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.VollE.Logic", "ppedv.VollE.Logic\ppedv.VollE.Logic.csproj", "{B51F92E2-4688-4AD1-B413-C7AEAB214AAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.VollE.UI.WPF", "ppedv.VollE.UI.WPF\ppedv.VollE.UI.WPF.csproj", "{C4D39AEA-F5F3-49D5-A905-0F3C07A05C41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B51F92E2-4688-4AD1-B413-C7AEAB214AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B51F92E2-4688-4AD1-B413-C7AEAB214AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B51F92E2-4688-4AD1-B413-C7AEAB214AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D39AEA-F5F3-49D5-A905-0F3C07A05C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D39AEA-F5F3-49D5-A905-0F3C07A05C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D39AEA-F5F3-49D5-A905-0F3C07A05C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D39AEA-F5F3-49D5-A905-0F3C07A05C41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
