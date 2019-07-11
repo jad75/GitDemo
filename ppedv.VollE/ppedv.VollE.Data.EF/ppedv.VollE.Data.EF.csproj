@@ -50,6 +50,9 @@
   <ItemGroup>
     <Compile Include="EfContext.cs" />
     <Compile Include="EfRepository.cs" />
+    <Compile Include="EfSpielerRepository.cs" />
+    <Compile Include="EfUnitOfWork.cs" />
+    <Compile Include="OLDEfRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,14 +4,14 @@ namespace ppedv.VollE.Logic
 {
     public class Core
     {
-        public IRepository Repository { get; private set; }
+        public IUnitOfWork UnitOfWork { get; private set; }
 
-        public Core(IRepository repo) //DI in here 
+        public Core(IUnitOfWork uow) //DI in here 
         {
-            this.Repository = repo;
+            this.UnitOfWork = uow;
         }
 
-        public Core() : this(new Data.EF.EfRepository())
+        public Core() : this(new Data.EF.EfUnitOfWork())
         { }
 
     }

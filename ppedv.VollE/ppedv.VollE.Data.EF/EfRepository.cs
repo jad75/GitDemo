@@ -1,93 +1,56 @@
 ﻿using ppedv.VollE.Model;
 using ppedv.VollE.Model.Contracts;
-using ppedv.VollE.Model.Faults;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ppedv.VollE.Data.EF
 {
-    public class EfRepository : IRepository
+
+    public class EfRepository<T> : IRepository<T> where T : Entity
     {
+        protected EfContext context;
 
-        EfContext context = new EfContext();
-
-        public void Add<T>(T entity) where T : Entity
+        public EfRepository(EfContext context)
         {
-            //if (typeof(T) == typeof(Spiel))
-            //    context.Spiel.Add(entity as Spiel);
+            this.context = context;
+        }
+
+        public void Add(T entity)
+        {
             context.Set<T>().Add(entity);
         }
 
-        public void Delete<T>(T entity) where T : Entity
+        public void Delete(T entity)
         {
             context.Set<T>().Remove(entity);
+
         }
 
-        public void Dispose()
-        {
-            context.Dispose();
-        }
-
-        public IEnumerable<T> GetAll<T>() where T : Entity
+        public IEnumerable<T> GetAll()
         {
             return context.Set<T>().ToList();
         }
 
-        public T GetById<T>(int id) where T : Entity
+        public T GetById(int id)
         {
             return context.Set<T>().Find(id);
+
         }
 
-        public IQueryable<T> Query<T>() where T : Entity
+        public IQueryable<T> Query()
         {
             return context.Set<T>();
-        }
-
-        public int SaveChanges()
-        {
-            try
-            {
-                return context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                var myEx = new ConcurrencyException("Schade: " + ex.Message);
-                myEx.UserWins = () =>
-                {
-                    foreach (var item in ex.Entries)
-                    {
-                        item.OriginalValues.SetValues(item.GetDatabaseValues());
-                    }
-                    SaveChanges();
-                };
-
-                myEx.DbWins = () =>
-                {
-                    foreach (var item in ex.Entries)
-                    {
-                        item.CurrentValues.SetValues(item.GetDatabaseValues());
-                    }
-                };
-
-                throw myEx;
-            }
-
 
         }
 
-
-        //nur für Web/WCF/WebAPI
-        public void Update<T>(T entity) where T : Entity
+        public void Update(T entity)
         {
-            var loaded = GetById<T>(entity.Id);
+            var loaded = GetById(entity.Id);
             if (loaded != null)
                 context.Entry(loaded).CurrentValues.SetValues(entity);
         }
     }
-
-
 }

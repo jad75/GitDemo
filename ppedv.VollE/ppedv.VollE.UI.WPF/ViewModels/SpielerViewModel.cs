@@ -32,7 +32,7 @@ namespace ppedv.VollE.UI.WPF.ViewModels
 
             SaveCommand = new RelayCommand(UserWantsToSave);
             NewCommand = new RelayCommand(UserWantsToAddNewSpieler);
-            DeleteCommand = new RelayCommand(o => { core.Repository.Delete(SelectedSpieler); LoadSpieler(); });
+            DeleteCommand = new RelayCommand(o => { core.UnitOfWork.GetRepo<Spieler>().Delete(SelectedSpieler); LoadSpieler(); });
             LadenCommand = new RelayCommand(p => LoadSpieler());
 
         }
@@ -42,14 +42,14 @@ namespace ppedv.VollE.UI.WPF.ViewModels
             try
             {
 
-                core.Repository.SaveChanges();
+                core.UnitOfWork.SaveChanges();
             }
             catch (ConcurrencyException ex)
             {
                 //todo dialog
 
                 //UserWins
-               // ex.UserWins.Invoke();
+                // ex.UserWins.Invoke();
 
                 //DbWins
                 ex.DbWins.Invoke();
@@ -67,7 +67,7 @@ namespace ppedv.VollE.UI.WPF.ViewModels
             core = new Core();
             SpielerList.Clear();
 
-            foreach (var item in core.Repository.Query<Spieler>().OrderBy(x => x.Name).ToList())
+            foreach (var item in core.UnitOfWork.SpielerRepository.Query().OrderBy(x => x.Name).ToList())
             {
                 SpielerList.Add(item);
             }
@@ -76,7 +76,7 @@ namespace ppedv.VollE.UI.WPF.ViewModels
         private void UserWantsToAddNewSpieler(object obj)
         {
             var sp = new Spieler() { Name = "NEU", Händigkeit = true, Geschlecht = Geschlecht.Divers };
-            core.Repository.Add(sp);
+            core.UnitOfWork.SpielerRepository.Add(sp);
             SpielerList.Add(sp);
         }
     }
