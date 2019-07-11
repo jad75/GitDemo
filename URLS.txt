@@ -14,3 +14,5 @@ https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/migrations/
 
 https://fluentassertions.com/objectgraphs/
 https://github.com/AutoFixture/AutoFixture
+
+https://github.com/Moq/moq4/wiki/Quickstart
