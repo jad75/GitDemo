@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\SpielerViewModel.cs" />
     <Compile Include="Views\MannschaftView.xaml.cs">
       <DependentUpon>MannschaftView.xaml</DependentUpon>
     </Compile>
@@ -122,8 +123,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <ProjectReference Include="..\ppedv.VollE.Logic\ppedv.VollE.Logic.csproj">
+      <Project>{b51f92e2-4688-4ad1-b413-c7aeab214aab}</Project>
+      <Name>ppedv.VollE.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ppedv.VollE.Model\ppedv.VollE.Model.csproj">
+      <Project>{3E56E50D-2428-4A07-9156-B6B04B04125F}</Project>
+      <Name>ppedv.VollE.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
