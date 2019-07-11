@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ppedv.VollE.UI.WPF"
+        xmlns:views="clr-namespace:ppedv.VollE.UI.WPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
     <DockPanel>
@@ -24,11 +25,17 @@
         <StatusBar DockPanel.Dock="Bottom" Height="22" Background="NavajoWhite"/>
         <TabControl>
             <TabItem Header="Spieler">
-
+                <views:SpielerView/>
             </TabItem>
-            <TabItem Header="Trainer"></TabItem>
-            <TabItem Header="Mannschaft"></TabItem>
-            <TabItem Header="Spiel"></TabItem>
+            <TabItem Header="Trainer">
+                <views:TrainerView/>
+            </TabItem>
+            <TabItem Header="Mannschaft">
+                <views:MannschaftView/>
+            </TabItem>
+            <TabItem Header="Spiel">
+                <views:SpielView/>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
