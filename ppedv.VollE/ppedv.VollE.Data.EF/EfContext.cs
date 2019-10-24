@@ -18,7 +18,7 @@ namespace ppedv.VollE.Data.EF
 
         public EfContext(string conString) : base(conString)
         { }
-        public EfContext() : this("Server=.;Database=VollE_dev;Trusted_Connection=true")
+        public EfContext() : this("Server=DESKTOP-PTJ4G65\\SQLEXPRESS;Database=VollE_dev;Trusted_Connection=true")
         { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
