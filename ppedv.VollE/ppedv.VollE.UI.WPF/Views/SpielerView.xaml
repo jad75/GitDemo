@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ppedv.VollE.UI.WPF.Views"
              xmlns:vm="clr-namespace:ppedv.VollE.UI.WPF.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="900">
     <UserControl.DataContext>
         <vm:SpielerViewModel/>
     </UserControl.DataContext>
@@ -19,7 +19,7 @@
         </WrapPanel>
         <DataGrid ItemsSource="{Binding SpielerList}"
                   SelectedItem="{Binding SelectedSpieler}"
-                  Width="200" DockPanel.Dock="Left"/>
+                  Width="600" DockPanel.Dock="Left"/>
         <StackPanel Margin="8,0">
             <Label>Name</Label>
             <TextBox Text="{Binding SelectedSpieler.Name}" />

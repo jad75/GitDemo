@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ppedv.VollE.UI.WPF"
         xmlns:views="clr-namespace:ppedv.VollE.UI.WPF.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="MainWindow" Height="450" Width="1000">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Datei">
